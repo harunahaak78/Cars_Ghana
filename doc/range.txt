@@ -1,0 +1,30 @@
+1. Range Rover
+Type: Full-Size Luxury SUV
+
+The flagship model of the Range Rover lineup, offering the pinnacle of luxury, performance, and off-road capability.
+Features a spacious interior with premium materials, cutting-edge infotainment systems, and advanced driver assistance technologies.
+Comes with a range of engine options, including plug-in hybrid and high-performance V8 variants.
+2. Range Rover Sport
+Type: Mid-Size Luxury SUV
+
+A sportier version of the flagship Range Rover, designed for those who want dynamic performance without compromising on luxury.
+Features a sleek design, powerful engine options, and responsive handling.
+Offers off-road prowess combined with sporty road performance, ideal for adventurous yet stylish drivers.
+3. Range Rover Velar
+Type: Compact Luxury SUV
+
+Known for its avant-garde design and minimalist interior, the Velar is one of the most stylish Range Rover models.
+Offers a refined driving experience, advanced technology, and a range of efficient engines.
+Perfect for those seeking a balance between city driving and occasional off-road adventures.
+4. Range Rover Evoque
+Type: Subcompact Luxury SUV
+
+The smallest Range Rover in the lineup, featuring a sleek and modern design.
+Known for its compact size, making it ideal for urban environments.
+Offers a luxurious interior, advanced technology, and off-road capability typical of the Range Rover brand.
+5. Range Rover Defender
+Type: Rugged Off-Road SUV
+
+A modern interpretation of the classic Land Rover Defender, designed for extreme off-road adventures.
+Features a tough and versatile design, available in 2-door (90) and 4-door (110) configurations.
+Equipped with advanced 4x4 systems, air suspension, and a host of tech features to conquer any terrain.

@@ -1,0 +1,95 @@
+.navbar{
+    background-color: rgba(0, 0, 0);
+    color: white;
+}
+
+span{
+    color: gold;
+}
+
+.contant{
+    margin-top: 30px;
+    text-align: center;
+}
+
+.carbtn{
+    border: none;
+    border-radius: 15px;
+    width: 20%;
+    padding: 5px;
+    background-color: rgb(23, 211, 23);
+    color: white;
+
+}
+
+.carbtn:active{
+    box-shadow: 1px 1px 1px 1px rgb(196, 193, 193);
+    background-color: rgb(1, 165, 1);
+
+}
+
+.intro{
+    height: 650px;
+}
+
+.aboutcontainer{
+    margin-top: 140px;
+    margin-bottom: 20px;
+}
+
+.carimg{
+    width: 100%;
+    height: 200px;
+    margin-right: 50px;
+}
+
+.cardimg{
+    width: 50%;
+}
+
+.card:hover{
+    box-shadow: 1px 1px 1px 1px lightgray;
+}
+
+.favorite-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  color: white;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+
+.favorite-btn:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.favorite-btn.active {
+  color: #ff4757;
+}
+.paymentimg{
+    width: 20%;
+    border-radius: 5px;
+}
+.paymentimg:hover{
+    border: 1px solid  rgb(55, 84, 247) ;
+}
+
+.paymentcontainer:active{
+    box-shadow: 1px 1px 1px 1px lightgray;
+
+}
+
+.paymentsubmit{
+    border: none;
+    background-color: rgb(70, 67, 252);
+    color: white;
+}
