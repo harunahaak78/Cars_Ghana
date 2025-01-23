@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View product</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark align-items-center">
+<nav class="navbar navbar-expand-lg navbar-dark align-items-center navbar-dark">
         <div class="container-fluid">
           <a class="navbar-brand fw-bold" href="#">
             Cars Ghana
@@ -70,16 +71,16 @@
           </div>
         </div>
     </nav>
-    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <div id="carouselExampleControls" class="carousel slide " data-bs-ride="carousel">
   <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="..." class="d-block w-100" alt="...">
+    <div class="carousel-item active ">
+      <img src="img/Audi.webp" class="d-block w-100" alt="Audi" style=" height: 400px">
     </div>
     <div class="carousel-item">
-      <img src="..." class="d-block w-100" alt="...">
+      <img src="img/jeep2.jpg" class="d-block w-100" alt="jeep"  style=" height: 400px">
     </div>
     <div class="carousel-item">
-      <img src="..." class="d-block w-100" alt="...">
+      <img src="img/bnw.jpg" class="d-block w-100" alt="Bmw"  style=" height: 400px">
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -91,6 +92,34 @@
     <span class="visually-hidden">Next</span>
   </button>
 </div>
+<div class="row mt-3 ms-auto me-auto d-flex product">
+    
+            <div class="col-12 col-md-4 mb-2 hover-effects">
+                <div class="card mb-3  align-items-center" style="max-width: 540px; height: 200px; ">
+                    <img src="img/lambo1_bg_removed.png.png" class="card-img-left" alt="cars" style="width: 150px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold text-start">Lamborghini</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 mb-2 hover-effects">
+                <div class="card mb-3  align-items-center" style="max-width: 540px; height: 200px;   ">
+                    <img src="img/audi3_bg_removed.png.png" class="card-img-left" alt="cars" style="width: 150px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Audi</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 mb-2 hover-effects">
+                <div class="card mb-3  align-items-center" style="max-width: 540px; height: 200px;">
+                    <img src="img/bnw_bg_removed.png.png" class="card-img-left" alt="cars" style="width: 150px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">BMW</h5>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
    <script src="js/bootstrap.bundle.min.js" ></script> 
 </body>
 </html>
