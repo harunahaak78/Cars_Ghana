@@ -49,8 +49,46 @@ if (isset($_POST['addProduct'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <title>Product Dashboard</title>
+    <style>
+        .side-navbar {
+            height: 100vh;
+            width: 250px;
+            background-color: #343a40;
+            color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            overflow-y: auto;
+            padding-top: 20px;
+        }
+        .side-navbar a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 10px 20px;
+        }
+        .side-navbar a:hover {
+            background-color: #495057;
+            color: #fff;
+        }
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
+      <!-- Side Navbar -->
+      <div class="side-navbar">
+        <h4 class="text-center">Dashboard</h4>
+        <a href="index.php">Home</a>
+        <a href="products.php">Products</a>
+        <a href="orders.php">Orders</a>
+        <a href="users.php">Users</a>
+        <a href="reports.php">Reports</a>
+        <a href="settings.php">Settings</a>
+        <a href="logout.php">Logout</a>
+    </div>
     <div class="container-fluid">
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
