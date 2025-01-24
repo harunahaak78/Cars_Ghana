@@ -48,7 +48,7 @@ if (isset($_POST['addProduct'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/lineicons.css">
+    <link rel="stylesheet" href="css/LineIcons.min.css">
     <link rel="stylesheet" href="css/asidebar.css">
     <title>Product Dashboard</title>
     <style>
