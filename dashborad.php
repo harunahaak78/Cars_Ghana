@@ -48,6 +48,8 @@ if (isset($_POST['addProduct'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/lineicons.css">
+    <link rel="stylesheet" href="css/asidebar.css">
     <title>Product Dashboard</title>
     <style>
         .side-navbar {
@@ -55,7 +57,7 @@ if (isset($_POST['addProduct'])) {
             width: 250px;
             background-color: #343a40;
             color: white;
-            position: fixed;
+            position:fixed;
             top: 0;
             left: 0;
             overflow-y: auto;
@@ -75,12 +77,19 @@ if (isset($_POST['addProduct'])) {
             margin-left: 250px;
             padding: 20px;
         }
-    </style>
+            </style>
 </head>
 <body>
       <!-- Side Navbar -->
-      <div class="side-navbar">
-        <h4 class="text-center">Dashboard</h4>
+      <div class="side-navbar" id="sidebar">
+           <div class="d-flex">
+                <button class="toggle-btn" type="button">
+                    <i class="lni lni-grid-alt"></i>
+                </button>
+                <div class="sidebar-logo">
+                    <a href="#">Dashborad</a>
+                </div>
+            </div>
         <a href="index.php">Home</a>
         <a href="products.php">Products</a>
         <a href="orders.php">Orders</a>
@@ -90,29 +99,9 @@ if (isset($_POST['addProduct'])) {
         <a href="logout.php">Logout</a>
     </div>
     <div class="container-fluid">
-        <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">Product Dashboard</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#addProduct">Add Product</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#productList">Product List</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
 
         <!-- Add Product Section -->
-        <div id="addProduct" class="row my-4">
+        <div id="addProduct" class="row my-4 me-auto">
             <div class="col-md-6 mx-auto">
                 <div class="card">
                     <div class="card-header bg-primary text-white">
@@ -145,8 +134,8 @@ if (isset($_POST['addProduct'])) {
 
         <!-- Product List Section -->
         <div id="productList" class="row my-4">
-            <div class="col">
-                <div class="card">
+            <div class="col d-flex justify-content-end me-5">
+                <div class="card w-75">
                     <div class="card-header bg-secondary text-white">
                         Product List
                     </div>
@@ -193,6 +182,7 @@ if (isset($_POST['addProduct'])) {
         </footer>
     </div>
 
+    <script src="js/dashboard.js" ></script>
     <script src="js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
