@@ -1,6 +1,7 @@
 <?php
  include("dbcon.php");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $conn->real_escape_string($_POST['UserName']);
     $firstName = $conn->real_escape_string($_POST['firstName']);
     $lastName = $conn->real_escape_string( $_POST['lastName']);
     $email = $conn->real_escape_string($_POST['email']);
@@ -12,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result->num_rows > 0) {
         echo "<script>alert('Email already exists. Please use a different email.');</script>";
     } else {
-        $insertQuery = "INSERT INTO users (first_name, last_name, email, password) VALUES ('$firstName', '$lastName', '$email', '$password')";
+        $insertQuery = "INSERT INTO users (username, first_name, last_name, email, password) VALUES ('$username','$firstName', '$lastName', '$email', '$password')";
         if ($conn->query($insertQuery) === TRUE) {
             echo "<script>alert('Registration successful!');</script>";
         } else {
@@ -62,6 +63,12 @@ $conn->close();
                         </div>
                         <form action="post">
                         <div class="row gy-3 overflow-hidden">
+                        <div class="col-12">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" name="UserName" id="UserName" placeholder="User Name" required/>
+                                <label for="firstName" class="form-label">UserName</label>
+                            </div>
+                            </div>
                             <div class="col-12">
                             <div class="form-floating mb-3">
                                 <input type="text" class="form-control" name="firstName" id="firstName" placeholder="First Name" required/>

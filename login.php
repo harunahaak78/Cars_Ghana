@@ -58,8 +58,8 @@
                         <div class="row">
                         <div class="col-12">
                             <hr class="mt-5 mb-4 border-secondary-subtle"/>
-                            <p class="m-0 text-secondary text-center">I don't have an account? <Link to="/signup"
-                             className="link-primary text-decoration-none">Sign Up</Link></p>
+                            <p class="m-0 text-secondary text-center">I don't have an account? <p to="/signup"
+                             class="link-primary text-decoration-none">Sign Up</p>
                         </div>
                         </div>
                         <div class="row">

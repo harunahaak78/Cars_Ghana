@@ -1,3 +1,43 @@
+<?php
+include("dbcon.php");
+
+if (isset($_POST['addProduct'])) {
+    $productName = mysqli_real_escape_string($conn, $_POST['productName']);
+    $productPrice = mysqli_real_escape_string($conn, $_POST['productPrice']);
+    $productDescription = mysqli_real_escape_string($conn, $_POST['productDescription']);
+    
+    // Handle file upload
+    if (isset($_FILES['productImage']) && $_FILES['productImage']['error'] === UPLOAD_ERR_OK) {
+        $imageTmpPath = $_FILES['productImage']['tmp_name'];
+        $imageName = $_FILES['productImage']['name'];
+        $imageExtension = strtolower(pathinfo($imageName, PATHINFO_EXTENSION));
+
+        // Allowed file types
+        $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+
+        if (in_array($imageExtension, $allowedExtensions)) {
+            $uploadPath = 'img/' . $imageName; // Directory where images will be stored
+            if (move_uploaded_file($imageTmpPath, $uploadPath)) {
+                // Insert into database
+                $sql = "INSERT INTO products (name, price, description, image) 
+                        VALUES ('$productName', '$productPrice', '$productDescription', '$uploadPath')";
+                if (mysqli_query($conn, $sql)) {
+                    echo "<script>alert('Product added successfully!');</script>";
+                } else {
+                    echo "<script>alert('Database error: " . mysqli_error($conn) . "');</script>";
+                }
+            } else {
+                echo "<script>alert('Failed to upload image.');</script>";
+            }
+        } else {
+            echo "<script>alert('Invalid file type. Only JPG, JPEG, PNG, and GIF are allowed.');</script>";
+        }
+    } else {
+        echo "<script>alert('Image upload error.');</script>";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -60,9 +100,7 @@
             <input class="form-control form-control-dark" type="text" placeholder="Search" aria-label="Search">
         </div>
         <div class="col-12 col-md-5 col-lg-8 d-flex align-items-center justify-content-md-end mt-3 mt-md-0">
-            <div class="mr-3 mt-1">
-                <a class="github-button" href="https://github.com/themesberg/simple-bootstrap-5-dashboard" data-color-scheme="no-preference: dark; light: light; dark: light;" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star /themesberg/simple-bootstrap-5-dashboard">Star</a>
-            </div>
+         
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
                   Hello, John Doe
@@ -96,7 +134,7 @@
                 </a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="addproduct.php">
+                <a class="nav-link" href="#">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
                     <span class="ml-2">Products</span>
                 </a>
@@ -123,133 +161,81 @@
         </div>
         </nav>
         <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 py-4 ms-auto">
-            <h1 class="h2">Dashboard</h1>
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Overview</li>
-                </ol>
-              </nav>
-              <h1 class="h2">Dashboard</h1>
-              <p>This is the homepage of a simple admin interface which is part of a tutorial written on Themesberg</p>
-              <div class="row my-4">
-                <div class="col-12 col-md-6 col-lg-3 mb-4 mb-lg-0">
-                    <div class="card">
-                        <h5 class="card-header">Customers</h5>
-                        <div class="card-body">
-                          <h5 class="card-title">345k</h5>
-                          <p class="card-text">Feb 1 - Apr 1, United States</p>
-                          <p class="card-text text-success">18.2% increase since last month</p>
-                        </div>
-                      </div>
-                </div>
-                <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">
-                    <div class="card">
-                        <h5 class="card-header">Revenue</h5>
-                        <div class="card-body">
-                          <h5 class="card-title">$2.4k</h5>
-                          <p class="card-text">Feb 1 - Apr 1, United States</p>
-                          <p class="card-text text-success">4.6% increase since last month</p>
-                        </div>
-                      </div>
-                </div>
-                <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">
-                    <div class="card">
-                        <h5 class="card-header">Purchases</h5>
-                        <div class="card-body">
-                          <h5 class="card-title">43</h5>
-                          <p class="card-text">Feb 1 - Apr 1, United States</p>
-                          <p class="card-text text-danger">2.6% decrease since last month</p>
-                        </div>
-                      </div>
-                </div>
-                <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">
-                    <div class="card">
-                        <h5 class="card-header">Traffic</h5>
-                        <div class="card-body">
-                          <h5 class="card-title">64k</h5>
-                          <p class="card-text">Feb 1 - Apr 1, United States</p>
-                          <p class="card-text text-success">2.5% increase since last month</p>
-                        </div>
-                      </div>
-                </div>
-              </div>
-                
-                <div class="row">
-                    <div class="col-12 col-xl-8 mb-4 mb-lg-0">
+            <div class="container-fluid">
+
+                <!-- Add Product Section -->
+                <div id="addProduct" class="row my-4 ">
+                    <div class="col-md-6 mx-auto">
                         <div class="card">
-                            <h5 class="card-header">Latest transactions</h5>
+                            <div class="card-header bg-primary text-white">
+                                Add New Product
+                            </div>
                             <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead>
-                                        <tr>
-                                            <th scope="col">Order</th>
-                                            <th scope="col">Product</th>
-                                            <th scope="col">Customer</th>
-                                            <th scope="col">Total</th>
-                                            <th scope="col">Date</th>
-                                            <th scope="col"></th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <th scope="row">17371705</th>
-                                            <td>Volt Premium Bootstrap 5 Dashboard</td>
-                                            <td>johndoe@gmail.com</td>
-                                            <td>€61.11</td>
-                                            <td>Aug 31 2020</td>
-                                            <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">17370540</th>
-                                            <td>Pixel Pro Premium Bootstrap UI Kit</td>
-                                            <td>jacob.monroe@company.com</td>
-                                            <td>$153.11</td>
-                                            <td>Aug 28 2020</td>
-                                            <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">17371705</th>
-                                            <td>Volt Premium Bootstrap 5 Dashboard</td>
-                                            <td>johndoe@gmail.com</td>
-                                            <td>€61.11</td>
-                                            <td>Aug 31 2020</td>
-                                            <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">17370540</th>
-                                            <td>Pixel Pro Premium Bootstrap UI Kit</td>
-                                            <td>jacob.monroe@company.com</td>
-                                            <td>$153.11</td>
-                                            <td>Aug 28 2020</td>
-                                            <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">17371705</th>
-                                            <td>Volt Premium Bootstrap 5 Dashboard</td>
-                                            <td>johndoe@gmail.com</td>
-                                            <td>€61.11</td>
-                                            <td>Aug 31 2020</td>
-                                            <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">17370540</th>
-                                            <td>Pixel Pro Premium Bootstrap UI Kit</td>
-                                            <td>jacob.monroe@company.com</td>
-                                            <td>$153.11</td>
-                                            <td>Aug 28 2020</td>
-                                            <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <a href="#" class="btn btn-block btn-light">View all</a>
+                                <form method="POST" action="dashborad.php" enctype="multipart/form-data">
+                                    <div class="mb-3">
+                                        <label for="productName" class="form-label">Product Name</label>
+                                        <input type="text" class="form-control" id="productName" name="productName" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="productPrice" class="form-label">Price</label>
+                                        <input type="number" class="form-control" id="productPrice" name="productPrice" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="productDescription" class="form-label">Description</label>
+                                        <textarea class="form-control" id="productDescription" name="productDescription" rows="3" required></textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="productImage" class="form-label">Product Image</label>
+                                        <input type="file" class="form-control" id="productImage" name="productImage" accept="image/*" required>
+                                    </div>
+                                    <button type="submit" name="addProduct" class="btn btn-success">Add Product</button>
+                                </form>
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-xl-4">
-                        <!-- Another widget will go here -->
+                </div>
+        
+                <!-- Product List Section -->
+                <div id="productList" class="row my-4">
+                    <div class="col ">
+                        <div class="card w-75">
+                            <div class="card-header bg-secondary text-white">
+                                Product List
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-hover">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Product Name</th>
+                                            <th>price</th>
+                                            <th>image</th>
+                                            <th>Description</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php if ($products->num_rows > 0): ?>
+                                            <?php while ($product = $products->fetch_assoc()): ?>
+                                                <tr>
+                                                    <td><?= $product['id'] ?></td>
+                                                    <td><?= $product['name'] ?></td>
+                                                    <td><?= $product['price'] ?></td>
+                                                    <td><?= $product['description'] ?></td>
+                                                    <td><?= $product['image'] ?></td>
+                                                    <td>
+                                                        <a href="?delete=<?= $product['id'] ?>" class="btn btn-danger btn-sm">Remove</a>
+                                                    </td>
+                                                </tr>
+                                            <?php endwhile; ?>
+                                        <?php else: ?>
+                                            <tr>
+                                                <td colspan="5" class="text-center">No products found</td>
+                                            </tr>
+                                        <?php endif; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <footer class="pt-5 ms-auto d-flex justify-content-between">
