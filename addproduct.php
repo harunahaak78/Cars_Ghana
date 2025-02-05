@@ -6,19 +6,16 @@ if (isset($_POST['addProduct'])) {
     $productPrice = mysqli_real_escape_string($conn, $_POST['productPrice']);
     $productDescription = mysqli_real_escape_string($conn, $_POST['productDescription']);
     
-    // Handle file upload
     if (isset($_FILES['productImage']) && $_FILES['productImage']['error'] === UPLOAD_ERR_OK) {
         $imageTmpPath = $_FILES['productImage']['tmp_name'];
         $imageName = $_FILES['productImage']['name'];
         $imageExtension = strtolower(pathinfo($imageName, PATHINFO_EXTENSION));
 
-        // Allowed file types
         $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
 
         if (in_array($imageExtension, $allowedExtensions)) {
-            $uploadPath = 'img/' . $imageName; // Directory where images will be stored
+            $uploadPath = 'img/' . $imageName; 
             if (move_uploaded_file($imageTmpPath, $uploadPath)) {
-                // Insert into database
                 $sql = "INSERT INTO products (name, price, description, image) 
                         VALUES ('$productName', '$productPrice', '$productDescription', '$uploadPath')";
                 if (mysqli_query($conn, $sql)) {
@@ -117,7 +114,7 @@ if (isset($_POST['addProduct'])) {
 <div class="container-fluid">
     <div class="row">
         <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-            <!-- sidebar content goes in here -->
+        
              
         <div class="position-sticky pt-md-5">
             <ul class="nav flex-column">
@@ -163,7 +160,6 @@ if (isset($_POST['addProduct'])) {
         <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 py-4 ms-auto">
             <div class="container-fluid">
 
-                <!-- Add Product Section -->
                 <div id="addProduct" class="row my-4 ">
                     <div class="col-md-6 mx-auto">
                         <div class="card">
@@ -195,7 +191,7 @@ if (isset($_POST['addProduct'])) {
                     </div>
                 </div>
         
-                <!-- Product List Section -->
+                
                 <div id="productList" class="row my-4">
                     <div class="col ">
                         <div class="card w-75">

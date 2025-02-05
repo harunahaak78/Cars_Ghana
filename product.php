@@ -16,6 +16,8 @@ if (!$result) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/fontawesome.css">
     <link rel="stylesheet" href="css/style.css">
     <title>Product</title>
 </head>
@@ -87,7 +89,15 @@ if (!$result) {
                             <div class="card-body">
                                 <h5 class="card-title fw-bold"><?= htmlspecialchars($row['name']) ?></h5>
                                 <p class="card-text">$<?= htmlspecialchars($row['price']) ?></p>
-                                <button class="btn btn-primary w-100">View Details</button>
+                                <div class="rating mb-2">
+                                <i class="price-text-color fa fa-star" ></i>
+                                <i class="price-text-color fa fa-star" ></i>
+                                <i class="price-text-color fa fa-star" ></i>
+                                <i class="price-text-color fa fa-star" ></i>
+                                <i class="price-text-color fa fa-star" ></i>
+                                </div>
+                                <button class="btn btn-primary w-100 " type="submit" >Buy Now</button>
+                                <button class="btn btn-success w-100 mt-2 " type="submit" >Add to cats</button>
                             </div>
                         </div>
                     </div>

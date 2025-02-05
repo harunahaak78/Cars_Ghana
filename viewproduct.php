@@ -1,3 +1,14 @@
+<?php 
+include("dbcon.php");
+
+$sql = "SELECT * FROM products";
+$result = mysqli_query($conn, $sql);
+
+if (!$result) {
+    die("Database query failed: " . mysqli_error($conn));
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -120,6 +131,28 @@
             </div>
         
         </div>
+        <div class="container mt-5">
+        <h2 class="text-center fw-bold">Our Products</h2>
+        <div class="row mt-3 justify-content-center">
+            <?php if (mysqli_num_rows($result) > 0): ?>
+                <?php while ($row = mysqli_fetch_assoc($result)): ?>
+                    <div class="col-12 col-md-4 mb-4">
+                        <div class="card h-100 hover-effects">
+                            <img src="<?= htmlspecialchars($row['image']) ?>" class="card-img-top" alt="<?= htmlspecialchars($row['name']) ?>" style="height: 200px; object-fit: cover;">
+                            <div class="card-body">
+                                <h5 class="card-title fw-bold"><?= htmlspecialchars($row['name']) ?></h5>
+                                <p class="card-text">$<?= htmlspecialchars($row['price']) ?></p>
+                                <p class="card-text">$<?= htmlspecialchars($row['description']) ?></p>
+                                <button class="btn btn-primary w-100">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                <?php endwhile; ?>
+            <?php else: ?>
+                <p class="text-center">No products found.</p>
+            <?php endif; ?>
+        </div>
+    </div>
    <script src="js/bootstrap.bundle.min.js" ></script> 
 </body>
 </html>
