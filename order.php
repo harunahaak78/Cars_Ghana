@@ -125,7 +125,7 @@ if (isset($_POST['addProduct'])) {
                 </a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link l" href="order.php">
+                <a class="nav-link l" href="#">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
                     <span class="ml-2">Orders</span>
                 </a>
@@ -159,83 +159,24 @@ if (isset($_POST['addProduct'])) {
         </nav>
         <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 py-4 ms-auto">
             <div class="container-fluid">
+                <h1 class=" text-center" >User Orders</h1>
+                <div class="card d-flex flex-row justify-content-between " >
+                    <img src="img/audi1.jpg" style=" width:60px" height="60px" alt="car" class=" ms-1 mt-1 mb-1 rounded">
+                    <h5 class="Item-name mt-3">haak</h5>
+                    <h5 class="buyer mt-3" >example@gmail.com</h5>
+                    <div class="buttons mt-3 me-2">
+                        <button class=" btn  btn-danger" style=" width:100px" > Delect</button>
+                        <button class=" btn  btn-success" style=" width:100px" > Accept</button>
+                        <button class=" btn  btn-primary" style=" width:130px">View More</button>
+                    </div>
+                    
 
-                <div id="addProduct" class="row my-4 ">
-                    <div class="col-md-6 mx-auto">
-                        <div class="card">
-                            <div class="card-header bg-primary text-white">
-                                Add New Product
-                            </div>
-                            <div class="card-body">
-                                <form method="POST" action="dashborad.php" enctype="multipart/form-data">
-                                    <div class="mb-3">
-                                        <label for="productName" class="form-label">Product Name</label>
-                                        <input type="text" class="form-control" id="productName" name="productName" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="productPrice" class="form-label">Price</label>
-                                        <input type="number" class="form-control" id="productPrice" name="productPrice" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="productDescription" class="form-label">Description</label>
-                                        <textarea class="form-control" id="productDescription" name="productDescription" rows="3" required></textarea>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="productImage" class="form-label">Product Image</label>
-                                        <input type="file" class="form-control" id="productImage" name="productImage" accept="image/*" required>
-                                    </div>
-                                    <button type="submit" name="addProduct" class="btn btn-success">Add Product</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
-        
-                
-                <div id="productList" class="row my-4">
-                    <div class="col ">
-                        <div class="card w-75">
-                            <div class="card-header bg-secondary text-white">
-                                Product List
-                            </div>
-                            <div class="card-body">
-                                <table class="table table-hover">
-                                    <thead class="table-dark">
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Product Name</th>
-                                            <th>price</th>
-                                            <th>image</th>
-                                            <th>Description</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php if ($products->num_rows > 0): ?>
-                                            <?php while ($product = $products->fetch_assoc()): ?>
-                                                <tr>
-                                                    <td><?= $product['id'] ?></td>
-                                                    <td><?= $product['name'] ?></td>
-                                                    <td><?= $product['price'] ?></td>
-                                                    <td><?= $product['description'] ?></td>
-                                                    <td><?= $product['image'] ?></td>
-                                                    <td>
-                                                        <a href="?delete=<?= $product['id'] ?>" class="btn btn-danger btn-sm">Remove</a>
-                                                    </td>
-                                                </tr>
-                                            <?php endwhile; ?>
-                                        <?php else: ?>
-                                            <tr>
-                                                <td colspan="5" class="text-center">No products found</td>
-                                            </tr>
-                                        <?php endif; ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <footer class="pt-5 ms-auto d-flex justify-content-between">
-                    <span>Copyright © 2019-2020 <a href="https://themesberg.com">Themesberg</a></span>
+
+            </div>
+            <footer class="pt-5 ms-auto d-flex justify-content-between">
+                <span>Copyright © 2019-2020 <a href="https://themesberg.com">Themesberg</a></span>
                     <ul class="nav m-0">
                         <li class="nav-item">
                         <a class="nav-link text-secondary" aria-current="page" href="#">Privacy Policy</a>

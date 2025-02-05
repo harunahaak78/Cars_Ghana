@@ -94,7 +94,7 @@ if (!$result) {
                                 <i class="price-text-color fa fa-star" ></i>
                                 <i class="price-text-color fa fa-star" ></i>
                                 <i class="price-text-color fa fa-star" ></i>
-                                <i class="price-text-color fa fa-star" ></i>
+                                <i class="fa fa-star" ></i>
                                 </div>
                                 <button class="btn btn-primary w-100 " type="submit" >Buy Now</button>
                                 <button class="btn btn-success w-100 mt-2 " type="submit" >Add to cats</button>
