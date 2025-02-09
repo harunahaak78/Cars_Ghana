@@ -56,7 +56,7 @@ $conn->close();
                             </div>
                         </div>
                         </div>
-                        <form action="post">
+                        <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"])?>" method="post" >
                         <div class="row gy-3 overflow-hidden">
                         <div class="col-12">
                             <div class="form-floating mb-3">

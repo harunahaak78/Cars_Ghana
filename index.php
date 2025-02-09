@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,48 +29,38 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarScroll">
-            <ul
-              class="navbar-nav ms-auto me-auto  my-lg-0 navbar-nav-scroll fw-bold"
-            >
+            <ul class="navbar-nav ms-auto me-auto my-lg-0 navbar-nav-scroll fw-bold">
               <li class="nav-item">
-                <Link to="/" class="text-decoration-none">
-                  <a class="nav-link active" aria-current="page" href="#">
-                    Home
-                  </a>
-                </Link>
+                <a class="nav-link active" href="#">Home</a>
               </li>
               <li class="nav-item">
-                <Link to="/prodect" class="text-decoration-none">
-                  <a class="nav-link" href="product.php">
-                    Product
-                  </a>
-                </Link>
+                <a class="nav-link" href="product.php">Product</a>
               </li>
-              <li class="nav-item">
-                <Link to="/contact" class="text-decoration-none">
-                  <a class="nav-link" href="signup.php">
-                    Sign Up
+
+              <?php if (isset($_SESSION["user_id"])) { ?>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <?php echo $_SESSION["email"]; ?> 
                   </a>
-                </Link>
-              </li>
-              <li class="nav-item">
-                <Link to="/contact" class="text-decoration-none">
-                  <a class="nav-link" href="login.php">
-                    Login
-                  </a>
-                </Link>
-              </li>
+                  <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                    <li><a class="dropdown-item" href="profile.php">Profile</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item text-danger" href="logout.php">Logout</a></li>
+                  </ul>
+                </li>
+              <?php } else { ?>
+                <li class="nav-item">
+                  <a class="nav-link" href="signup.php">Sign Up</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="login.php">Login</a>
+                </li>
+              <?php } ?>
             </ul>
-            <form class="d-flex ms-auto" role="search" onSubmit={handleSearch}>
-              <input
-                class="form-control me-2 mt-3 h-25 align-items-center"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
-              <button class="btn btn-outline-success" type="submit">
-                Search
-              </button>
+
+            <form class="d-flex ms-auto" role="search">
+              <input class="form-control me-2 mt-3 h-25 align-items-center" type="search" placeholder="Search" aria-label="Search" />
+              <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
           </div>
         </div>
@@ -84,30 +78,26 @@
                     </p>
                      <a href="product.php"><button class="carbtn">Prodect</button></a>
                 </div>
-                <img src="img/range-rover_bg_removed.png.png" alt="rangr rover" class=' img-fluid mb-3' />
+                <img src="img/range-rover_bg_removed.png.png" alt="range rover" class="img-fluid mb-3" />
             </div>
        </div>
     </div>
 
-    <div class=" container  aboutcontainer  ">
-        <div class="row  ">
-            <div class="col col-lg-4">
-                <img src="img/audi.jpg" alt="" class=' img-fluid rounded-4' />
+    <div class="container aboutcontainer">
+        <div class="row">
+            <div class="col-lg-4">
+                <img src="img/audi.jpg" alt="" class="img-fluid rounded-4" />
             </div>
-            <div class="col col-lg-4 bg-body-tertiary rounded-4">
-               <h1 class=' display-5 text-center fw-bold mt-2'>
-                About Us 
-               </h1>
-               <p class=' lead'> Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                Impedit praesentium vel laboriosam ratione quia omnis amet fugit nobis porro alias minus ?</p>
+            <div class="col-lg-4 bg-body-tertiary rounded-4">
+               <h1 class="display-5 text-center fw-bold mt-2">About Us</h1>
+               <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit...</p>
             </div>
-            <div class="col col-lg-4">
-                <img src="img/audi.jpg" alt="" class=' img-fluid rounded-4' />
+            <div class="col-lg-4">
+                <img src="img/audi.jpg" alt="" class="img-fluid rounded-4" />
             </div>
         </div>
     </div>
 
-
-  <script src="js/bootstrap.bundle.min.js" ></script>  
+  <script src="js/bootstrap.bundle.min.js"></script>  
 </body>
 </html>

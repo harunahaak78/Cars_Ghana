@@ -1,38 +1,7 @@
 <?php
 include("dbcon.php");
 
-if (isset($_POST['addProduct'])) {
-    $productName = mysqli_real_escape_string($conn, $_POST['productName']);
-    $productPrice = mysqli_real_escape_string($conn, $_POST['productPrice']);
-    $productDescription = mysqli_real_escape_string($conn, $_POST['productDescription']);
-    
-    if (isset($_FILES['productImage']) && $_FILES['productImage']['error'] === UPLOAD_ERR_OK) {
-        $imageTmpPath = $_FILES['productImage']['tmp_name'];
-        $imageName = $_FILES['productImage']['name'];
-        $imageExtension = strtolower(pathinfo($imageName, PATHINFO_EXTENSION));
 
-        $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
-
-        if (in_array($imageExtension, $allowedExtensions)) {
-            $uploadPath = 'img/' . $imageName; 
-            if (move_uploaded_file($imageTmpPath, $uploadPath)) {
-                $sql = "INSERT INTO products (name, price, description, image) 
-                        VALUES ('$productName', '$productPrice', '$productDescription', '$uploadPath')";
-                if (mysqli_query($conn, $sql)) {
-                    echo "<script>alert('Product added successfully!');</script>";
-                } else {
-                    echo "<script>alert('Database error: " . mysqli_error($conn) . "');</script>";
-                }
-            } else {
-                echo "<script>alert('Failed to upload image.');</script>";
-            }
-        } else {
-            echo "<script>alert('Invalid file type. Only JPG, JPEG, PNG, and GIF are allowed.');</script>";
-        }
-    } else {
-        echo "<script>alert('Image upload error.');</script>";
-    }
-}
 ?>
 
 <!DOCTYPE html>
@@ -158,23 +127,44 @@ if (isset($_POST['addProduct'])) {
         </div>
         </nav>
         <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 py-4 ms-auto">
-            <div class="container-fluid">
-                <h1 class=" text-center" >User Orders</h1>
-                <div class="card d-flex flex-row justify-content-between " >
-                    <img src="img/audi1.jpg" style=" width:60px" height="60px" alt="car" class=" ms-1 mt-1 mb-1 rounded">
-                    <h5 class="Item-name mt-3">haak</h5>
-                    <h5 class="buyer mt-3" >example@gmail.com</h5>
-                    <div class="buttons mt-3 me-2">
-                        <button class=" btn  btn-danger" style=" width:100px" > Delect</button>
-                        <button class=" btn  btn-success" style=" width:100px" > Accept</button>
-                        <button class=" btn  btn-primary" style=" width:130px">View More</button>
+        <div id="productList" class="row my-4">
+                    <div class="col ">
+                        <div class="card w-75">
+                            <div class="card-header bg-secondary text-white">
+                                Order List
+                            </div>
+                        <div class="card-body">
+                <table class="table table-hover">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>image</th>
+                            <th>ProductName</th>
+                            <th>Price</th>
+                            <th>Coutomer</th>
+                            <th>Date of Order</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td><img src="img/audi.jpg" alt="car" class=" rounded" style=" width:60px; height:60px"></td>
+                            <td>Audi</td>
+                            <td>300,000</td>
+                            <td>Example@gmail.com</td>
+                            <td>10/2/2005</td>
+                            <td>
+                                <a href="#" class="btn btn-primary">View</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                
+                   </table>
+                                    
                     </div>
-                    
-
-
-                </div>
-
-            </div>
+                    </div>
+             </div>
+    </div>
             <footer class="pt-5 ms-auto d-flex justify-content-between">
                 <span>Copyright © 2019-2020 <a href="https://themesberg.com">Themesberg</a></span>
                     <ul class="nav m-0">

@@ -1,8 +1,7 @@
 <?php 
 include("dbcon.php");
 
-// Fetch products from the database
-$sql = "SELECT * FROM products"; // Corrected table name
+$sql = "SELECT * FROM products"; 
 $result = mysqli_query($conn, $sql);
 
 if (!$result) {
@@ -40,6 +39,25 @@ if (!$result) {
                     <li class="nav-item">
                         <a href="#" class="nav-link">Contact</a>
                     </li>
+                    <?php if (isset($_SESSION["user_id"])) { ?>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <?php echo $_SESSION["email"]; ?>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                                <li><a class="dropdown-item" href="profile.php">Profile</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item text-danger" href="logout.php">Logout</a></li>
+                            </ul>
+                        </li>
+                    <?php } else { ?>
+                        <li class="nav-item">
+                            <a href="signup.php" class="nav-link">Sign Up</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="login.php" class="nav-link">Login</a>
+                        </li>
+                    <?php } ?>
                 </ul>
                 <form class="d-flex ms-auto" role="search">
                     <input class="form-control me-2 mt-4 h-25 align-items-center" type="search" placeholder="Search" aria-label="Search">
@@ -90,14 +108,15 @@ if (!$result) {
                                 <h5 class="card-title fw-bold"><?= htmlspecialchars($row['name']) ?></h5>
                                 <p class="card-text">$<?= htmlspecialchars($row['price']) ?></p>
                                 <div class="rating mb-2">
-                                <i class="price-text-color fa fa-star" ></i>
-                                <i class="price-text-color fa fa-star" ></i>
-                                <i class="price-text-color fa fa-star" ></i>
-                                <i class="price-text-color fa fa-star" ></i>
-                                <i class="fa fa-star" ></i>
+                                    <i class="price-text-color fa fa-star"></i>
+                                    <i class="price-text-color fa fa-star"></i>
+                                    <i class="price-text-color fa fa-star"></i>
+                                    <i class="price-text-color fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
                                 </div>
-                                <button class="btn btn-primary w-100 " type="submit" >Buy Now</button>
-                                <button class="btn btn-success w-100 mt-2 " type="submit" >Add to cats</button>
+                                <a href="payment.php?name=<?= urlencode($row['name']) ?>&price=<?= urlencode($row['price']) ?>&image=<?= urlencode($row['image']) ?>" 
+                                   class="btn btn-primary w-100">Buy Now</a>
+                                <button class="btn btn-success w-100 mt-2" type="submit">Add to Cart</button>
                             </div>
                         </div>
                     </div>
@@ -109,5 +128,23 @@ if (!$result) {
     </div>
 
     <script src="js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+    document.querySelector('.nav-link[href="product.php"]').addEventListener("click", function(event) {
+        event.preventDefault(); // Prevent default navigation
+        fetchProducts(); // Load products dynamically
+    });
+});
+
+function fetchProducts() {
+    fetch("product.php")
+    .then(response => response.text())
+    .then(data => {
+        document.body.innerHTML = data; // Replace body content with fetched product page
+    })
+    .catch(error => console.error("Error fetching products:", error));
+}
+    </script>
 </body>
 </html>
