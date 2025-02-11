@@ -56,7 +56,15 @@
 
 
 
-
+<div class="contant container ms-auto text-white">
+                    <h1 class=" display-4 fw-bold text-white "><span>By</span> Or<span> Rent</span> Your Dream Car</h1>
+                    <p class='text-white'>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                        Officiis aliquam dolor repellendus facilis
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum impedit sed odit 
+                        veritatis consequatur aliquam ipsa quod cupiditate non. Voluptates.
+                    </p>
+                     <a href="product.php"><button class="carbtn">Prodect</button></a>
+                </div>
 
 
 

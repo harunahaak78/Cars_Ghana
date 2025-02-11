@@ -1,3 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <titl></titl>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/sweetalert.js" ></script>
+    <title>Sign Up</title>
+</head>
+<body>
+
+
+
 <?php
  include("dbcon.php");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -11,13 +25,53 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $conn->query($checkEmailQuery);
 
     if ($result->num_rows > 0) {
-        echo "<script>alert('Email already exists. Please use a different email.');</script>";
+        ?>
+        <script>
+               swal({
+                            title:"Sign Up",
+                            text:"Error, Email already exist",
+                            icon: "error",
+                            button:"Opps!, try again"
+                        })
+
+        </script>
+   <?php     
     } else {
         $insertQuery = "INSERT INTO users (username, first_name, last_name, email, password) VALUES ('$username','$firstName', '$lastName', '$email', '$password')";
         if ($conn->query($insertQuery) === TRUE) {
-            echo "<script>alert('Registration successful!');</script>";
+            ?>
+            <script>
+                     swal({
+                            title:"Sign Up",
+                            text:"Congrats, New account created",
+                            icon: "success",
+                            button:"Okey, Login now"
+                        })
+                   //wait for some sec and redirect 
+                   setTimeout(()=>{
+                    //redirct users to login paga
+                    location.href='login.php';
+
+                   }, 3000);
+            </script>
+    <?php
         } else {
-            echo "Error: " . $insertQuery . "<br>" . $conn->error;
+            ?>
+                   <script>
+                     swal({
+                            title:"Error",
+                            text:"Sorry, Failed to create an account",
+                            icon: "error",
+                            button:"0pps!, Try Again"
+                        })
+                   //wait for some sec and redirect 
+                   setTimeout(()=>{
+                    //redirct users to login paga
+                    location.reload();
+
+                   }, 1000);
+            </script>
+    <?PHP
         }
     }
 }
@@ -25,23 +79,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $conn->close();
 ?>
 
-?>
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <titl></titl>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/all.min.css">
-    <link rel="stylesheet" href="css/fontawesome.min.css">
-    <link rel="stylesheet" href="css/toastr.min.css">
-    <script src="js/sweetalert.js" ></script>
-    <title>Sign Up</title>
-</head>
-<body>
+
+
 <section class="bg-light p-3 p-md-4 p-xl-5">
             <div class="container">
                 <div class="row justify-content-center">
@@ -106,7 +147,7 @@ $conn->close();
                         <div class="row">
                         <div class="col-12">
                             <hr class="mt-5 mb-4 border-secondary-subtle"/>
-                            <p class="m-0 text-secondary text-center">Already have an account? <Link to="/login" class="link-primary text-decoration-none">Sign in</Link></p>
+                            <p class="m-0 text-secondary text-center">Already have an account? <a href="login.php" class="link-primary text-decoration-none">log in</a></p>
                         </div>
                         </div>
                 </div>
@@ -115,31 +156,6 @@ $conn->close();
         </section>
 
     <!-- javascript -->
-    <script src="js/toastr.min.js"></script>
-    <!-- toastr code -->
-     <script>
-        function success(){
-            toastr.success("Account Registed")
-            
-            toastr.options = {
-            "closeButton": true,
-            "debug": false,
-            "newestOnTop": false,
-            "progressBar": true,
-            "positionClass": "toast-top-right",
-            "preventDuplicates": true,
-            "onclick": null,
-            "showDuration": "300",
-            "hideDuration": "1000",
-            "timeOut": "5000",
-            "extendedTimeOut": "1000",
-            "showEasing": "swing",
-            "hideEasing": "linear",
-            "showMethod": "fadeIn",
-            "hideMethod": "fadeOut"
-            }
-        }
-     </script>
     <script src="js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
