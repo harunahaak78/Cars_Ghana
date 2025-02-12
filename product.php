@@ -14,10 +14,10 @@ if (!$result) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/all.min.css">
-    <link rel="stylesheet" href="css/fontawesome.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <title>Product</title>
 </head>
 <body>
@@ -34,7 +34,7 @@ if (!$result) {
                         <a href="index.php" class="nav-link active" aria-current="page">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">Product</a>
+                        <a href="product.php" class="nav-link">Product</a>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link">Contact</a>
@@ -127,11 +127,11 @@ if (!$result) {
         </div>
     </div>
 
-    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-    document.querySelector('.nav-link[href="product.php"]').addEventListener("click", function(event) {
+        document.querySelector('.nav-link[href="product.php"]').addEventListener("click", function(event) {
         event.preventDefault(); // Prevent default navigation
         fetchProducts(); // Load products dynamically
     });

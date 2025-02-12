@@ -42,7 +42,7 @@ if (isset($_POST['addProduct'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <style>
           
         .sidebar {
@@ -259,6 +259,6 @@ if (isset($_POST['addProduct'])) {
     
     
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="js/bootstrap.bundle.min.js" ></script>
+    <script src="assets/js/bootstrap.bundle.min.js" ></script>
 </body>
 </html>

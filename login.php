@@ -36,7 +36,7 @@ if (isset($_POST['login'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 </head>
 <body>
 <section class="bg-light p-3 p-md-4 p-xl-5">
@@ -82,6 +82,6 @@ if (isset($_POST['login'])) {
     </div>
 </section>
 
-<script src="js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

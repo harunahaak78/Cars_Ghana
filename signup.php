@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <titl></titl>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <script src="js/sweetalert.js" ></script>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <script src="assets/js/sweetalert.js" ></script>
     <title>Sign Up</title>
 </head>
 <body>
@@ -156,6 +156,6 @@ $conn->close();
         </section>
 
     <!-- javascript -->
-    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
