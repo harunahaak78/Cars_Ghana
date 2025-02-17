@@ -1,6 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <script src="assets/js/sweetalert.js" ></script>
+
 <?php
 include("dbcon.php");
-session_start();
 
 if (isset($_POST['addProduct'])) {
     $productName = mysqli_real_escape_string($conn, $_POST['productName']);
@@ -19,13 +27,42 @@ if (isset($_POST['addProduct'])) {
             if (move_uploaded_file($imageTmpPath, $uploadPath)) {
                 $sql = "INSERT INTO products (name, price, description, image) 
                         VALUES ('$productName', '$productPrice', '$productDescription', '$uploadPath')";
+
+
                 if (mysqli_query($conn, $sql)) {
-                    echo "<script>alert('Product added successfully!');</script>";
+                    ?>
+                    <script>
+                        swal({
+                            title:"Add Product",
+                            text:"success, Product Added successfully",
+                            icon: "success",
+                            button:"Add "
+                        });
+                        setTimeout(()=>{
+                    location.reload();
+
+                   }, 1000);
+
+                    </script>
+            <?php        
                 } else {
                     echo "<script>alert('Database error: " . mysqli_error($conn) . "');</script>";
                 }
             } else {
-                echo "<script>alert('Failed to upload image.');</script>";
+                ?>
+                <script>
+                    swal({
+                            title:"Error",
+                            text:"Error, Failed to upload image ",
+                            icon: "error",
+                            button:"Opps!,try agian "
+                        });
+                        setTimeout(()=>{
+                    location.reload();
+
+                   }, 1000);
+                </script>
+        <?php        
             }
         } else {
             echo "<script>alert('Invalid file type. Only JPG, JPEG, PNG, and GIF are allowed.');</script>";
@@ -36,13 +73,7 @@ if (isset($_POST['addProduct'])) {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
     <style>
           
         .sidebar {
@@ -160,81 +191,9 @@ if (isset($_POST['addProduct'])) {
         </nav>
         <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 py-4 ms-auto">
             <div class="container-fluid">
+                <?php require "addproducts.php" ?>
 
-                <div id="addProduct" class="row my-4 ">
-                    <div class="col-md-6 mx-auto">
-                        <div class="card">
-                            <div class="card-header bg-primary text-white">
-                                Add New Product
-                            </div>
-                            <div class="card-body">
-                                <form method="POST" action="dashborad.php" enctype="multipart/form-data">
-                                    <div class="mb-3">
-                                        <label for="productName" class="form-label">Product Name</label>
-                                        <input type="text" class="form-control" id="productName" name="productName" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="productPrice" class="form-label">Price</label>
-                                        <input type="number" class="form-control" id="productPrice" name="productPrice" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="productDescription" class="form-label">Description</label>
-                                        <textarea class="form-control" id="productDescription" name="productDescription" rows="3" required></textarea>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="productImage" class="form-label">Product Image</label>
-                                        <input type="file" class="form-control" id="productImage" name="productImage" accept="image/*" required>
-                                    </div>
-                                    <button type="submit" name="addProduct" class="btn btn-success">Add Product</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-        
-                
-                <div id="productList" class="row my-4">
-                    <div class="col ">
-                        <div class="card w-75">
-                            <div class="card-header bg-secondary text-white">
-                                Product List
-                            </div>
-                            <div class="card-body">
-                                <table class="table table-hover">
-                                    <thead class="table-dark">
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Product Name</th>
-                                            <th>price</th>
-                                            <th>image</th>
-                                            <th>Description</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php if ($products->num_rows > 0): ?>
-                                            <?php while ($product = $products->fetch_assoc()): ?>
-                                                <tr>
-                                                    <td><?= $product['id'] ?></td>
-                                                    <td><?= $product['name'] ?></td>
-                                                    <td><?= $product['price'] ?></td>
-                                                    <td><?= $product['description'] ?></td>
-                                                    <td><?= $product['image'] ?></td>
-                                                    <td>
-                                                        <a href="?delete=<?= $product['id'] ?>" class="btn btn-danger btn-sm">Remove</a>
-                                                    </td>
-                                                </tr>
-                                            <?php endwhile; ?>
-                                        <?php else: ?>
-                                            <tr>
-                                                <td colspan="5" class="text-center">No products found</td>
-                                            </tr>
-                                        <?php endif; ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+              
                 <footer class="pt-5 ms-auto d-flex justify-content-between">
                     <span>Copyright © 2019-2020 <a href="https://themesberg.com">Themesberg</a></span>
                     <ul class="nav m-0">
@@ -253,12 +212,6 @@ if (isset($_POST['addProduct'])) {
         </main>
     </div>
   </div>
-        
-  
-  
-    
-    
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="assets/js/bootstrap.bundle.min.js" ></script>
 </body>
 </html>

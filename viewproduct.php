@@ -1,5 +1,6 @@
 <?php 
 include("dbcon.php");
+session_start();
 
 $sql = "SELECT * FROM products";
 $result = mysqli_query($conn, $sql);
@@ -53,6 +54,18 @@ if (!$result) {
                   </a>
                 </Link>
               </li>
+              <?php if (isset($_SESSION["user_id"])) { ?>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <?php echo $_SESSION["email"]; ?> 
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                    <li><a class="dropdown-item" href="profile.php">Profile</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item text-danger" href="logout.php">Logout</a></li>
+                  </ul>
+                </li>
+              <?php } else { ?>
               <li class="nav-item">
                 <Link to="/contact" class="text-decoration-none">
                   <a class="nav-link" href="signup.php">
@@ -67,6 +80,7 @@ if (!$result) {
                   </a>
                 </Link>
               </li>
+              <?php } ?>
             </ul>
             <form class="d-flex ms-auto" role="search" onSubmit={handleSearch}>
               <input
@@ -85,7 +99,7 @@ if (!$result) {
     <div id="carouselExampleControls" class="carousel slide " data-bs-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active ">
-      <img src="img/Audi.webp" class="d-block w-100" alt="Audi" style=" height: 400px">
+      <img src="img/audi3.jpg" class="d-block w-100" alt="Audi" style=" height: 400px">
     </div>
     <div class="carousel-item">
       <img src="img/jeep2.jpg" class="d-block w-100" alt="jeep"  style=" height: 400px">
@@ -142,7 +156,7 @@ if (!$result) {
                             <div class="card-body">
                                 <h5 class="card-title fw-bold"><?= htmlspecialchars($row['name']) ?></h5>
                                 <p class="card-text">$<?= htmlspecialchars($row['price']) ?></p>
-                                <p class="card-text">$<?= htmlspecialchars($row['description']) ?></p>
+                                <p class="card-text"><?= htmlspecialchars($row['description']) ?></p>
                                 <button class="btn btn-primary w-100">View Details</button>
                             </div>
                         </div>

@@ -1,5 +1,6 @@
 <?php 
 include("dbcon.php");
+session_start();
 
 $sql = "SELECT * FROM products"; 
 $result = mysqli_query($conn, $sql);
@@ -116,7 +117,7 @@ if (!$result) {
                                 </div>
                                 <a href="payment.php?name=<?= urlencode($row['name']) ?>&price=<?= urlencode($row['price']) ?>&image=<?= urlencode($row['image']) ?>" 
                                    class="btn btn-primary w-100">Buy Now</a>
-                                <button class="btn btn-success w-100 mt-2" type="submit">Add to Cart</button>
+                                <button class="btn btn-success w-100 mt-2" type="submit"> <a href="viewproduct.php" class=" text-light text-decoration-none">View Product</a> </button>
                             </div>
                         </div>
                     </div>
