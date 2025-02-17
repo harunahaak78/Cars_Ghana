@@ -1,5 +1,24 @@
 <?php
 session_start();
+
+
+    $uri = $_SERVER['REQUEST_URI'];
+
+    if($uri === '/Cars_Ghana'){
+        require 'index.php';
+    }
+    else if($uri === '/product'){
+        require 'product.php';
+    }
+    else if($uri === '/viewproduct'){
+        require "viewproduct.php";
+    }  
+    else if($uri === '/signup'){
+        require "signup.php";
+    }
+    else if($uri === '/login'){
+        require "login.php";
+    }
 ?>
 
 <!DOCTYPE html>
@@ -40,7 +59,7 @@ session_start();
               <?php if (isset($_SESSION["user_id"])) { ?>
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <?php echo $_SESSION["email"]; ?> 
+                    <?php echo $_SESSION["username"]; ?> 
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="userDropdown">
                     <li><a class="dropdown-item" href="profile.php">Profile</a></li>

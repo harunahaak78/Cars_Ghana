@@ -1,13 +1,10 @@
 <?php
 
-   require "function.php";
-
-   
 
     $uri = $_SERVER['REQUEST_URI'];
 
-    if($uri === '/Cars_Ghana/'){
-        require 'controller/index.php';
+    if($uri === '/Cars_Ghana'){
+        require 'Cars_Ghana/index.php';
     }
     else if($uri === '/Cars_Ghana/product'){
         require 'controller/product.php';

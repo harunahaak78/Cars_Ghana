@@ -43,7 +43,7 @@ if (!$result) {
                     <?php if (isset($_SESSION["user_id"])) { ?>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <?php echo $_SESSION["email"]; ?>
+                                <?php echo $_SESSION["username"]; ?>
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="userDropdown">
                                 <li><a class="dropdown-item" href="profile.php">Profile</a></li>
