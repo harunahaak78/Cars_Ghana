@@ -6,6 +6,7 @@ session_start();
 
     if($uri === '/Cars_Ghana'){
         require 'index.php';
+  
     }
     else if($uri === '/product'){
         require 'product.php';

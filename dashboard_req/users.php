@@ -2,7 +2,7 @@
    require "dbcon.php";
 
    $sql = "SELECT * FROM user ";
-   $result = $conn->query($sql);
+   $result = mysqli_query($conn, $sql);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,9 +31,9 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php if ($result-> num_rows > 0 ): ?>
-                                            <?php while ($row = $result->fetch_assoc()): ?>
-                                                <tr>
+                                       <?php if($result->num_rows>0){ ?>
+                                          <?php while($row = $result->fetch_assoc()){ ?>
+                                            <tr>
                                                     <td><?= $row['id'] ?></td>
                                                     <td><?= $row['username'] ?></td>
                                                     <td><?= $row['first_name'] ?></td>
@@ -45,14 +45,13 @@
                                                         <a href="?delete=<?= $row['id'] ?>" class="btn btn-danger btn-sm">Remove</a>
                                                     </td>
                                                 </tr>
-                                            <?php endwhile; ?>
-                                        <?php else: ?>
-                                            <tr>
-                                                <td colspan="5" class="text-center">No users found</td>
-                                            </tr>
-                                        <?php endif; ?>
+                                            <?php }?>
+                                        <?php } else{ ?>
+                                            <td colspan="5" class="text-center">No users found</td>
+                                            <?php }?>
                                     </tbody>
                                 </table>
+
                             </div>
                         </div>
     
