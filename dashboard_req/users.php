@@ -1,8 +1,11 @@
 <?php 
    require "dbcon.php";
 
-   $sql = "SELECT * FROM user ";
+   $sql = "SELECT * FROM users ";
    $result = mysqli_query($conn, $sql);
+   if ($result===false){
+    die("Error in SQL Query: " .$conn->error);
+   }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,7 +50,7 @@
                                                 </tr>
                                             <?php }?>
                                         <?php } else{ ?>
-                                            <td colspan="5" class="text-center">No users found</td>
+                                            <td colspan="7" class="text-center">No users found</td>
                                             <?php }?>
                                     </tbody>
                                 </table>

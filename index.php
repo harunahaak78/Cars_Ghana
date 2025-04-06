@@ -78,9 +78,9 @@ session_start();
               <?php } ?>
             </ul>
 
-            <form class="d-flex ms-auto" role="search">
-              <input class="form-control me-2 mt-3 h-25 align-items-center" type="search" placeholder="Search" aria-label="Search" />
-              <button class="btn btn-outline-success" type="submit">Search</button>
+            <form class="d-flex ms-auto" method="post" action="search.php " role="search">
+              <input class="form-control me-2 mt-3 h-25 align-items-center" name="search" type="search" placeholder="Search" aria-label="Search" />
+              <button class="btn btn-outline-success" name="search-submit" type="submit">Search</button>
             </form>
           </div>
         </div>

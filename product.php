@@ -38,7 +38,7 @@ if (!$result) {
                         <a href="product.php" class="nav-link">Product</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">Contact</a>
+                        <a href="contact.php" class="nav-link">Contact</a>
                     </li>
                     <?php if (isset($_SESSION["user_id"])) { ?>
                         <li class="nav-item dropdown">
