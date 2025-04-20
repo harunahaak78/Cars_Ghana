@@ -157,7 +157,7 @@ if (!$result) {
                                 <h5 class="card-title fw-bold"><?= htmlspecialchars($row['name']) ?></h5>
                                 <p class="card-text">$<?= htmlspecialchars($row['price']) ?></p>
                                 <p class="card-text"><?= htmlspecialchars($row['description']) ?></p>
-                                <button class="btn btn-primary w-100">View Details</button>
+                                <button class="btn btn-primary w-100">Buy Now</button>
                             </div>
                         </div>
                     </div>

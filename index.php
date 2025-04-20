@@ -97,7 +97,7 @@ session_start();
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum impedit sed odit 
                         veritatis consequatur aliquam ipsa quod cupiditate non. Voluptates.
                     </p>
-                     <a href="product.php"><button class="carbtn">Prodect</button></a>
+                     <a href="product.php"><button class="carbtn">Product</button></a>
                 </div>
                 <img src="img/range-rover_bg_removed.png.png" alt="range rover" class="img-fluid mb-3" />
             </div>

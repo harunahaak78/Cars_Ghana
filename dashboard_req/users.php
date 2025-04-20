@@ -1,11 +1,35 @@
 <?php 
    require "dbcon.php";
+  
 
    $sql = "SELECT * FROM users ";
    $result = mysqli_query($conn, $sql);
    if ($result===false){
     die("Error in SQL Query: " .$conn->error);
    }
+   if (isset($_GET['delete'])) {
+    $userId = $_GET['delete'];
+    $sql = "DELETE FROM users WHERE id = $userId";
+    if ($conn->query($sql) === TRUE) {
+        ?>
+        <script>
+                   swal({
+                            title:"Delete user",
+                            text:"success, user Deleted successfully",
+                            icon: "success",
+                            button:"ok "
+                        });
+                        setTimeout(()=>{
+                            location.href='userdash.php';
+
+                   }, 3000);
+        </script>
+ <?php
+       
+    } else {
+        echo "<script>alert('Error: " . $conn->error . "');</script>";
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
